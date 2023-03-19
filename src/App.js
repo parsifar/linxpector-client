@@ -47,7 +47,7 @@ const App = () => {
         let backendUrl =
             process.env.NODE_ENV === "development"
                 ? ""
-                : window.env.BACKEND_URL;
+                : "https://linxpector.cyclic.app";
 
         let crawlEndpoint = backendUrl + "/crawl";
 
