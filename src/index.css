@@ -1,0 +1,21 @@
+a.app-logo {
+    color: white;
+    text-decoration: none;
+}
+.new-crawl-btn {
+    background-color: white !important;
+}
+.new-crawl-btn a {
+    color: #333;
+    text-decoration: none;
+}
+
+div.MuiChip-root.internal {
+    height: 22px;
+}
+div.MuiChip-root.internal {
+    border-color: #0e8388;
+}
+div.MuiChip-root.external {
+    border-color: #be6db7;
+}
