@@ -14,8 +14,13 @@ div.MuiChip-root.internal {
     height: 22px;
 }
 div.MuiChip-root.internal {
-    border-color: #0e8388;
+    border-color: #009688;
 }
 div.MuiChip-root.external {
     border-color: #be6db7;
+}
+
+.results-table th {
+    max-width: 610px;
+    overflow-wrap: break-word;
 }

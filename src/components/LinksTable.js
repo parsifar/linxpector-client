@@ -9,7 +9,7 @@ import Link from "@mui/material/Link";
 
 const LinksTable = ({ linksArray, showType = false }) => {
     return (
-        <TableContainer>
+        <TableContainer className="results-table">
             <Table sx={{ minWidth: 650 }} size="small">
                 <TableHead>
                     <TableRow>
