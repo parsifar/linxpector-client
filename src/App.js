@@ -15,8 +15,6 @@ import { teal } from "@mui/material/colors";
 import Footer from "./components/Footer";
 import Introduction from "./components/Introduction";
 
-import env from "react-dotenv";
-
 const App = () => {
     const muiTheme = createTheme({
         palette: {
@@ -47,7 +45,9 @@ const App = () => {
 
         // use the production endpoint on production build
         let backendUrl =
-            process.env.NODE_ENV === "development" ? "" : env.BACKEND_URL;
+            process.env.NODE_ENV === "development"
+                ? ""
+                : window.env.BACKEND_URL;
 
         let crawlEndpoint = backendUrl + "/crawl";
 
