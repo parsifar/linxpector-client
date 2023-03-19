@@ -24,3 +24,7 @@ div.MuiChip-root.external {
     max-width: 610px;
     overflow-wrap: break-word;
 }
+
+footer {
+    z-index: 1;
+}
