@@ -12,7 +12,7 @@ const Loading = ({ count }) => {
             }}
         >
             <Typography variant="h6" sx={{ mr: 4 }}>
-                Crawling the website... {count && <p>{count} page crawled</p>}
+                Crawling the website... {count && <p>{count} pages crawled</p>}
             </Typography>
 
             <CircularProgress color="primary" />

@@ -93,10 +93,13 @@ const App = () => {
                 }
             });
 
+        let backendProgressUrl =
+            process.env.NODE_ENV === "development"
+                ? "http://localhost:5000/progress-stream"
+                : "https://linxpector.cyclic.app/progress-stream";
+
         // subscribe to event stream
-        let progressEventsource = new EventSource(
-            "http://localhost:5000/progress-stream"
-        );
+        let progressEventsource = new EventSource(backendProgressUrl);
 
         // specific event message for requestId
         progressEventsource.addEventListener(
