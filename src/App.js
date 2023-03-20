@@ -32,6 +32,8 @@ const App = () => {
     const [hasError, setHasError] = useState(false);
     // backendResponse state is set here, when we get the backend response we update it and pass it down to the Results component
     const [backendResponse, setBackendResponse] = useState([]);
+    // crawled pages count stats
+    const [crawledPagesCount, setCrawledPagesCount] = useState(false);
 
     const navigate = useNavigate();
 
@@ -50,6 +52,8 @@ const App = () => {
                 : "https://linxpector.cyclic.app";
 
         let crawlEndpoint = backendUrl + "/crawl";
+        // unique request id
+        let requestId = "request" + Date.now();
 
         fetch(crawlEndpoint, {
             method: "POST",
@@ -57,11 +61,15 @@ const App = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                requestId: requestId,
                 enteredURL: enteredURL,
                 captchaToken: captchaToken,
             }),
         })
             .then((response) => {
+                //close the progress event source
+                progressEventsource.close();
+
                 // check response code
                 if (response.status !== 200) {
                     setisLoading(false);
@@ -84,6 +92,21 @@ const App = () => {
                     navigate("/results");
                 }
             });
+
+        // subscribe to event stream
+        let progressEventsource = new EventSource(
+            "http://localhost:5000/progress-stream"
+        );
+
+        // specific event message for requestId
+        progressEventsource.addEventListener(
+            requestId,
+            function (e) {
+                let count = JSON.parse(e.data).crawled;
+                setCrawledPagesCount(count);
+            },
+            false
+        );
     };
 
     // this function runs on input change and updates the enteredURL state
@@ -111,7 +134,9 @@ const App = () => {
                                     setHasError={setHasError}
                                 />
 
-                                {isLoading && <Loading />}
+                                {isLoading && (
+                                    <Loading count={crawledPagesCount} />
+                                )}
 
                                 {hasError && (
                                     <Alert sx={{ my: 4 }} severity="error">

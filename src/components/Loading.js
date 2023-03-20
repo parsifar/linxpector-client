@@ -2,7 +2,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-const Loading = () => {
+const Loading = ({ count }) => {
     return (
         <Box
             sx={{
@@ -12,8 +12,9 @@ const Loading = () => {
             }}
         >
             <Typography variant="h6" sx={{ mr: 4 }}>
-                Crawling the website...{" "}
+                Crawling the website... {count && <p>{count} page crawled</p>}
             </Typography>
+
             <CircularProgress color="primary" />
         </Box>
     );
