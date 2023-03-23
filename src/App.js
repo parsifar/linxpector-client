@@ -49,7 +49,7 @@ const App = () => {
         let backendUrl =
             process.env.NODE_ENV === "development"
                 ? ""
-                : "https://linxpector.cyclic.app";
+                : "http://linxpector-env-1.eba-mfb46swa.ca-central-1.elasticbeanstalk.com";
 
         let crawlEndpoint = backendUrl + "/crawl";
         // unique request id
@@ -96,7 +96,7 @@ const App = () => {
         let backendProgressUrl =
             process.env.NODE_ENV === "development"
                 ? "http://localhost:5000/progress-stream"
-                : "https://linxpector.cyclic.app/progress-stream";
+                : "http://linxpector-env-1.eba-mfb46swa.ca-central-1.elasticbeanstalk.com/progress-stream";
 
         // subscribe to event stream
         let progressEventsource = new EventSource(backendProgressUrl);
