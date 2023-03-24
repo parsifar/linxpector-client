@@ -65,33 +65,28 @@ const App = () => {
                 enteredURL: enteredURL,
                 captchaToken: captchaToken,
             }),
-        })
-            .then((response) => {
-                //close the progress event source
-                progressEventsource.close();
+        }).then((response) => {
+            //close the progress event source
+            progressEventsource.close();
+            setCrawledPagesCount(0);
 
-                // check response code
-                if (response.status !== 200) {
-                    setisLoading(false);
-                    setHasError("Looks like we hit a snag! Please try again.");
-                } else {
-                    return response.json();
-                }
-            })
-            .then((data) => {
-                //check error
-                if (data.error) {
-                    setHasError(data.error);
-                    setisLoading(false);
-                } else {
-                    console.dir(data);
+            // check response code
+            if (response.status !== 200) {
+                setisLoading(false);
 
+                response.json().then((error) => {
+                    setHasError(error);
+                });
+            } else {
+                // status 200
+                response.json().then((data) => {
                     setBackendResponse(data);
                     setisLoading(false);
 
                     navigate("/results");
-                }
-            });
+                });
+            }
+        });
 
         let backendProgressUrl =
             process.env.NODE_ENV === "development"

@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const Loading = ({ count }) => {
+    let loadingText = "Crawling the website...";
+    if (count && count > 0) {
+        loadingText = `${count} pages crawled.`;
+    }
     return (
         <Box
             sx={{
@@ -12,7 +16,7 @@ const Loading = ({ count }) => {
             }}
         >
             <Typography variant="h6" sx={{ mr: 4 }}>
-                Crawling the website... {count && <p>{count} pages crawled</p>}
+                {loadingText}
             </Typography>
 
             <CircularProgress color="primary" />
